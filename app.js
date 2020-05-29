@@ -27,7 +27,7 @@ async function showPost() {
 			`
 		<div class="number">${post.id} </div>
 		<div class="post-info">
-		<h2 class="post-title">${post.title}</h2>
+	 	<h2 class="post-title">${post.title}</h2>
 		<p class="post-body">${post.body}</p>
 		 </div>
 		`;
@@ -36,4 +36,31 @@ async function showPost() {
 	})
 }
 
-showPost()
+showPost();
+
+// Show loading and add more post
+function showLoading(argument) {
+	loading.classList.add('show');
+
+	setTimeout(() = {
+		loading.classList.remove('show');
+
+		setTimeout(() => {
+			page++;
+			showPost();
+		}, 300)
+
+	}, 1000)
+}
+
+window.addEventListener('scroll', () => {
+	const {
+		scrollTop,
+		scrollHeight,
+		clientHeight
+	} = document.documentElement;
+
+	if (scrollTop + clientHeight >= scrollHeight - 5) {
+		showLoading();
+	}
+})
